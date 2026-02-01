@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Restaurant } from "@/types";
 import { Card } from "@/components/ui/card";
 
@@ -7,10 +8,11 @@ interface RestaurantCardProps {
 
 export function RestaurantCard({ restaurant }: RestaurantCardProps) {
   return (
-    <Card className="rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow p-4 lg:p-5">
-      <div className="flex items-start gap-3 lg:gap-4">
+    <Link href={`/restaurant/${restaurant.id}`}>
+      <Card className="rounded-xl sm:rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow p-3 sm:p-4 lg:p-5 min-h-[80px] sm:min-h-0 cursor-pointer">
+      <div className="flex items-start gap-2.5 sm:gap-3 lg:gap-4">
         {/* Logo - Orange square with rounded corners as per Figma */}
-        <div className="relative h-12 w-12 lg:h-16 lg:w-16 shrink-0 rounded-lg bg-[#FF6B35] flex flex-col items-center justify-center overflow-hidden">
+        <div className="relative h-11 w-11 sm:h-12 sm:w-12 lg:h-16 lg:w-16 shrink-0 rounded-lg bg-[#FF6B35] flex flex-col items-center justify-center overflow-hidden">
           {restaurant.logo ? (
             <img
               src={restaurant.logo}
@@ -46,38 +48,38 @@ export function RestaurantCard({ restaurant }: RestaurantCardProps) {
         </div>
 
         {/* Restaurant Info */}
-        <div className="flex-1 min-w-0">
-          <h3 className="font-display text-base lg:text-lg font-bold text-[#0a0d12] mb-1 truncate">
+        <div className="flex-1 min-w-0 overflow-hidden">
+          <h3 className="font-display text-sm sm:text-base lg:text-lg font-bold text-[#0a0d12] mb-0.5 sm:mb-1 truncate">
             {restaurant.name}
           </h3>
           {restaurant.rating && (
-            <div className="flex items-center gap-1 mb-1">
+            <div className="flex items-center gap-1 mb-0.5 sm:mb-1">
               <svg
-                width="14"
-                height="14"
+                width="12"
+                height="12"
                 viewBox="0 0 14 14"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-yellow-400"
+                className="text-yellow-400 sm:w-3.5 sm:h-3.5"
               >
                 <path
                   d="M7 0L8.5716 4.83688L14 5.61143L10.5 9.16312L11.4164 14L7 11.3369L2.58359 14L3.5 9.16312L0 5.61143L5.4284 4.83688L7 0Z"
                   fill="currentColor"
                 />
               </svg>
-              <span className="text-sm lg:text-base font-medium text-[#0a0d12]">
+              <span className="text-xs sm:text-sm lg:text-base font-medium text-[#0a0d12]">
                 {restaurant.rating}
               </span>
             </div>
           )}
-          {restaurant.location && (
-            <p className="text-xs lg:text-sm font-medium text-[#535862] truncate">
-              {restaurant.location}
-              {restaurant.distance && ` - ${restaurant.distance}`}
+          {(restaurant.location || restaurant.distance) && (
+            <p className="text-[11px] sm:text-xs lg:text-sm font-medium text-[#535862] truncate">
+              {[restaurant.location, restaurant.distance].filter(Boolean).join(" · ")}
             </p>
           )}
         </div>
       </div>
     </Card>
+    </Link>
   );
 }

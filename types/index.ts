@@ -21,7 +21,18 @@ export interface Restaurant {
   distance?: string;
   image?: string;
   logo?: string;
+  images?: string[];
+  reviewCount?: number;
   // Add other fields as needed based on API response
+}
+
+export interface Review {
+  id: string;
+  userName: string;
+  avatar?: string;
+  rating: number;
+  comment: string;
+  date: string;
 }
 
 export interface Category {
@@ -35,6 +46,8 @@ export interface CartItem {
   id: string;
   menuItem: MenuItem;
   quantity: number;
+  restaurantId?: string;
+  restaurantName?: string;
 }
 
 export interface Order {
@@ -50,6 +63,7 @@ export interface Order {
 
 export interface FilterState {
   category: string | null;
+  distance: "nearby" | "1km" | "3km" | "5km" | null;
   minPrice: number | null;
   maxPrice: number | null;
   minRating: number | null;

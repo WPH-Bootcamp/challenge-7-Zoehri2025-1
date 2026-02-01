@@ -9,8 +9,8 @@ export function Logo({ variant = "default" }: LogoProps) {
   const textColor = variant === "white" ? "text-white" : "text-[#0a0d12]";
   
   return (
-    <div className="flex items-center gap-[11.429px] lg:gap-[15px]">
-      <div className="relative h-[32px] w-[32px] lg:h-[42px] lg:w-[42px] shrink-0 overflow-hidden">
+    <div className="flex items-center gap-2 sm:gap-[11.429px] lg:gap-[15px] min-w-0">
+      <div className="relative h-8 w-8 sm:h-[32px] sm:w-[32px] lg:h-[42px] lg:w-[42px] shrink-0 overflow-hidden">
         {/* Logo icon from Figma */}
         <img
           src={logoIcon}
@@ -18,7 +18,7 @@ export function Logo({ variant = "default" }: LogoProps) {
           className="h-full w-full object-contain"
         />
       </div>
-      <p className={`font-display text-[24.381px] lg:text-[32px] font-extrabold leading-[32px] lg:leading-[42px] ${textColor}`}>
+      <p className={`font-display text-xl sm:text-[24.381px] lg:text-[32px] font-extrabold leading-tight sm:leading-[32px] lg:leading-[42px] truncate ${textColor}`}>
         Foody
       </p>
     </div>

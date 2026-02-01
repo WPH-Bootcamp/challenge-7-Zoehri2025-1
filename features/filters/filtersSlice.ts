@@ -3,6 +3,7 @@ import { FilterState } from "@/types";
 
 const initialState: FilterState = {
   category: null,
+  distance: null,
   minPrice: null,
   maxPrice: null,
   minRating: null,
@@ -16,6 +17,12 @@ const filtersSlice = createSlice({
   reducers: {
     setCategory: (state, action: PayloadAction<string | null>) => {
       state.category = action.payload;
+    },
+    setDistance: (
+      state,
+      action: PayloadAction<"nearby" | "1km" | "3km" | "5km" | null>
+    ) => {
+      state.distance = action.payload;
     },
     setPriceRange: (
       state,
@@ -40,6 +47,7 @@ const filtersSlice = createSlice({
     },
     resetFilters: (state) => {
       state.category = null;
+      state.distance = null;
       state.minPrice = null;
       state.maxPrice = null;
       state.minRating = null;
@@ -51,6 +59,7 @@ const filtersSlice = createSlice({
 
 export const {
   setCategory,
+  setDistance,
   setPriceRange,
   setMinRating,
   setSortBy,

@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "../store";
 import { addItem, removeItem, updateQuantity, clearCart } from "./cartSlice";
+import type { AddItemPayload } from "./cartSlice";
 import { MenuItem } from "@/types";
 
 // Typed hooks for Redux
@@ -12,8 +13,8 @@ export const useCart = () => {
   const items = useAppSelector((state) => state.cart.items);
   const dispatch = useAppDispatch();
 
-  const addToCart = (menuItem: MenuItem) => {
-    dispatch(addItem(menuItem));
+  const addToCart = (payload: MenuItem | AddItemPayload) => {
+    dispatch(addItem(payload));
   };
 
   const removeFromCart = (id: string) => {

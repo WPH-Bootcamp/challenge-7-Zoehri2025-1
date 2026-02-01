@@ -57,8 +57,8 @@ export default function LoginPage() {
       // API call untuk login
       console.log("Attempting login with:", { email, apiBaseUrl: process.env.NEXT_PUBLIC_API_BASE_URL });
       
-      // Coba endpoint yang paling umum digunakan
-      const response = await apiClient.post("/auth/login", { 
+      // Endpoint login sesuai dokumentasi API Swagger
+      const response = await apiClient.post("/api/auth/login", { 
         email, 
         password 
       });
